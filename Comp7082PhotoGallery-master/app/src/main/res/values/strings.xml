@@ -1,0 +1,28 @@
+<resources>
+    <string name="app_name">Comp7082PhotoGallery</string>
+    <string name="searchText">Search</string>
+    <string name="searchTextHint">Enter keyword to find</string>
+    <string name="dateSearchTextHint">yyyy/MM/dd</string>
+    <string name="timeSearchTextHint">hh:mm:ss</string>
+    <string name="searchDatePrompt">Search by Date and Time</string>
+    <string name="tagSearchPrompt">Search by Keyword</string>
+    <string name="searchDatePromptFrom">From</string>
+    <string name="searchDatepromptTo">To</string>
+    <string name="Tag">Add Tags</string>
+    <string name="TagOK">Set</string>
+    <string name="TagCancel">Cancel</string>
+    <string name="TagDescription">Associate your pics with tags here. This will make searching easier!</string>
+    <string name="addressPrompt">Search by Address Location</string>
+    <string name="addressLocationTextHint">Enter address to find</string>
+    <string name="gpsCoordPrompt">Search by a GPS Area</string>
+    <string name="gpsSWCoordPrompt">Enter Southwest Coordinate</string>
+    <string name="gpsNECoordPrompt">Enter Northeast Coordinate</string>
+    <string name="latitudePrompt">Latitude</string>
+    <string name="longitudePrompt">Longitude</string>
+    <string name="gpsLatitudeTextHint">00.000000</string>
+    <string name="gpsLongitudeTextHint">000.000000</string>
+    <string name="camerabutton">cameraButton</string>
+    <string name="imageview">imageView</string>
+    <string name="captionSave">Save</string>
+    <string name="captionButtonText">Caption</string>
+</resources>
