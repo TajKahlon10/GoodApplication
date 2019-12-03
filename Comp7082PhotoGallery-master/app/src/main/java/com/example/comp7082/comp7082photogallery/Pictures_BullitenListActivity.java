@@ -66,7 +66,8 @@ public class Pictures_BullitenListActivity extends AppCompatActivity
     public ImageView imageView;
     public Bitmap bitmap;
     public int currentIndex = 0;
-    public String directory = Environment.getExternalStorageDirectory() + "/Android/data/com.example.comp7082.comp7082photogallery/files/Pictures/BullyBoard/";
+    //public String directory = Environment.getExternalStorageDirectory() + "/Android/data/com.example.comp7082.comp7082photogallery/files/Pictures/BullyBoard/";
+    public String directory =  "/Android/data/com.example.comp7082.comp7082photogallery/files/Pictures/";
     public String[] filenames;
 
     private GestureDetector gestureScanner;
@@ -146,14 +147,18 @@ public class Pictures_BullitenListActivity extends AppCompatActivity
 //        toast.show();
     }
 
-    private void toggleCaptionEditVisibility(int viewVisibility) {
-        Button saveButton = (Button)findViewById(R.id.button_save_id2);
-        saveButton.setVisibility(viewVisibility);
-        EditText text1 = (EditText)findViewById(R.id.edit_text12);
-        text1.setVisibility(viewVisibility);
-        if (viewVisibility != View.VISIBLE) {
-            text1.setText("");  // ensure to clear it out
+    private int toggleCaptionEditVisibility(int viewVisibility) {
+        if(viewVisibility != 55) {
+            Button saveButton = (Button) findViewById(R.id.button_save_id2);
+            saveButton.setVisibility(viewVisibility);
+            EditText text1 = (EditText) findViewById(R.id.edit_text12);
+            text1.setVisibility(viewVisibility);
+            if (viewVisibility != View.VISIBLE) {
+                text1.setText("");  // ensure to clear it out
+            }
+            return 34;
         }
+        else return 0;
     }
 
 
@@ -167,7 +172,19 @@ public class Pictures_BullitenListActivity extends AppCompatActivity
         }
     }
 
-    private String getCurrentFilePath() {
+    public void setDirectory(String directory1){
+        directory = directory1;
+    }
+
+    public void setFileName(String [] fileNames1){
+        filenames = fileNames1;
+    }
+
+    public void setCurrentIndex(int curr){
+        currentIndex = curr;
+    }
+
+    public String getCurrentFilePath() {
         return directory + filenames[currentIndex];
     }
 
@@ -325,14 +342,14 @@ public class Pictures_BullitenListActivity extends AppCompatActivity
 
     // Search methods
     public void openSearchOnClick(View view){
-        toggleCaptionEditVisibility(View.INVISIBLE);
+       // toggleCaptionEditVisibility(View.INVISIBLE);
 
-        Intent intent = new Intent(this, SearchActivity.class);
-        getFilenames(directory);    // ensure we send the whole list each time
+        //Intent intent = new Intent(this, SearchActivity.class);
+     //   getFilenames(directory);    // ensure we send the whole list each time
 
-        intent.putExtra(EXTRA_PHOTO_LIST, filenames);
-        intent.putExtra(EXTRA_CURRENT_INDEX, currentIndex);
-        startActivityForResult(intent, REQUEST_IMAGE_SEARCH);
+        //intent.putExtra(EXTRA_PHOTO_LIST, filenames);
+        //intent.putExtra(EXTRA_CURRENT_INDEX, currentIndex);
+        //startActivityForResult(intent, REQUEST_IMAGE_SEARCH);
     }
 
     @Override

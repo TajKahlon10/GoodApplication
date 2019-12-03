@@ -76,6 +76,20 @@ public class EditBullitenActivity extends AppCompatActivity{
         }
     }
 
+    public int toggleBullyItems(int viewVisibility) {
+        if(viewVisibility != 303){
+        //Button saveButton = (Button)findViewById(R.id.button_save_id);
+       // saveButton.setVisibility(viewVisibility);
+        //EditText text1 = (EditText)findViewById(R.id.edit_text1);
+       //text1.setVisibility(viewVisibility);
+        if (viewVisibility != View.VISIBLE) {
+        //    text1.setText("");  // ensure to clear it out
+        }
+        return 35;
+        }
+        else{ return 0;}
+    }
+
 
 
     private File createImageFile() throws IOException {
@@ -106,9 +120,6 @@ public class EditBullitenActivity extends AppCompatActivity{
 
     public void saveBullListItem(View v){
         String comment = ((EditText) findViewById(R.id.editText3)).getText().toString();
-
-
-
         SharedPreferences prefs = getSharedPreferences("Bull_List", MODE_PRIVATE);
         // SharedPreferences.Editor editor = getSharedPreferences("Bull_List", MODE_PRIVATE).edit();
         int index = Integer.parseInt(prefs.getString("count", "0")) + 1;
@@ -120,12 +131,8 @@ public class EditBullitenActivity extends AppCompatActivity{
         editor.putString("count", ""+index);
         editor.apply();
 
-
         Intent i = new Intent(getApplicationContext(),BullitenListActivity.class);
         startActivity(i);
-
-
-
     }
 
 }

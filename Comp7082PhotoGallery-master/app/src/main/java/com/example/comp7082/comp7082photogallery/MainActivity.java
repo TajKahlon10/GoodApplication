@@ -65,7 +65,8 @@ public class MainActivity extends AppCompatActivity
     public ImageView imageView;
     public Bitmap bitmap;
     public int currentIndex = 0;
-    public String directory = Environment.getExternalStorageDirectory() + "/Android/data/com.example.comp7082.comp7082photogallery/files/Pictures/";
+    public String directory = getScrollGalleryDirectory() + "/Android/data/com.example.comp7082.comp7082photogallery/files/Pictures/";
+    //public String directory =  "/Android/data/com.example.comp7082.comp7082photogallery/files/Pictures/";
     public String[] filenames;
 
     private GestureDetector gestureScanner;
@@ -114,7 +115,7 @@ public class MainActivity extends AppCompatActivity
 
         // populate caption from file
         EditText text1 = (EditText)findViewById(R.id.edit_text1);
-        File myFile = new File(currentPhotoPath);
+        PictureFile myFile = new PictureFile(currentPhotoPath);
         text1.setText(ExifUtility.getExifTagString(myFile, ExifUtility.EXIF_CAPTION_TAG));
 
 //        Button saveButton = (Button)findViewById(R.id.button_save_id);
@@ -126,10 +127,9 @@ public class MainActivity extends AppCompatActivity
         String comment = ((EditText) findViewById(R.id.edit_text1)).getText().toString();
         hideSoftKeyboard();
         if (currentPhotoPath != null && !currentPhotoPath.isEmpty()) {
-            File myFile = new File(currentPhotoPath);
-            ExifUtility.setExifTagString(myFile, ExifUtility.EXIF_CAPTION_TAG, comment);
-
-            CharSequence text = ExifUtility.getExifTagString(myFile, ExifUtility.EXIF_CAPTION_TAG);
+            PictureFile myFile = new PictureFile(currentPhotoPath);
+            myFile.setCaptionText(comment);
+            CharSequence text = myFile.getCaptionText();
             ((TextView) findViewById(R.id.currentImageCaptionTextView)).setText(text);
         }
         else {
@@ -288,8 +288,9 @@ public class MainActivity extends AppCompatActivity
 
     private void getCaptionFromImageFile(String photoPath) {
         // retrieve the caption for the new image
-        File currentFile = new File(photoPath);
-        String currentFileCaption = ExifUtility.getExifTagString(currentFile, ExifUtility.EXIF_CAPTION_TAG);
+        PictureFile currentFile = new PictureFile(photoPath);
+        //String currentFileCaption = ExifUtility.getExifTagString(currentFile, ExifUtility.EXIF_CAPTION_TAG);
+        String currentFileCaption =  currentFile.getCaptionText();
         ((TextView)findViewById(R.id.currentImageCaptionTextView)).setText((currentFileCaption == null ? "" : currentFileCaption));
     }
 
@@ -354,19 +355,20 @@ public class MainActivity extends AppCompatActivity
     }
 
     // direction parameter should be an enum
-    private void scrollGallery(int direction) {
+    public boolean scrollGallery(int direction) {
         switch (direction) {
             case NAVIGATE_LEFT:     // left
-                Log.d("scrollGallery :", "Scroll Left");
+   //             Log.d("scrollGallery :", "Scroll Left");
                 --currentIndex;
                 break;
             case NAVIGATE_RIGHT:    // right
-                Log.d("scrollGallery :", "Scroll Right");
+//                Log.d("scrollGallery :", "Scroll Right");
                 ++currentIndex;
                 break;
             default:
                 break;
         }
+
 
         // stay in bounds
         if (currentIndex < 0) {
@@ -376,12 +378,23 @@ public class MainActivity extends AppCompatActivity
             currentIndex = filenames.length - 1;
         }
 
-        // update the gallery image
-        currentPhotoPath = directory + filenames[currentIndex];
-        Log.d("scrollGallery :", "currentIndex = " + currentIndex + " filenames.length = " + filenames.length);
-        Log.d("scrollGallery :", "currentPhotoPath = " + currentPhotoPath);
-        createPicture(currentPhotoPath);
-        imageView.setImageBitmap(bitmap);
+        if( currentPhotoPath != null) {
+            // update the gallery image
+            currentPhotoPath = directory + filenames[currentIndex];
+            Log.d("scrollGallery :", "currentIndex = " + currentIndex + " filenames.length = " + filenames.length);
+            Log.d("scrollGallery :", "currentPhotoPath = " + currentPhotoPath);
+            createPicture(currentPhotoPath);
+            imageView.setImageBitmap(bitmap);
+            return true;
+        }else{
+            return false;
+        }
+
+
+    }
+
+    public static String getScrollGalleryDirectory() {
+        return Environment.getExternalStorageDirectory().toString();
     }
 
     @Override

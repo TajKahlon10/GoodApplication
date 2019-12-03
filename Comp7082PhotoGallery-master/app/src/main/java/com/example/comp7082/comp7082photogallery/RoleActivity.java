@@ -13,6 +13,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.lang.reflect.Array;
 
 public class RoleActivity extends AppCompatActivity
 {       @Override
@@ -84,5 +85,11 @@ public class RoleActivity extends AppCompatActivity
         // TODO Auto-generated method stub
         Intent i = new Intent(getApplicationContext(),ParentActivity.class);
         startActivity(i);
+    }
+
+    public static String[] getRoles(){
+        String data[] = {"teacher", "parent"};
+
+        return data;
     }
 }

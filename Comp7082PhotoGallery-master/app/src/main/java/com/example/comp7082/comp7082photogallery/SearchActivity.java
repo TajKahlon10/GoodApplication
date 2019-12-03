@@ -122,10 +122,10 @@ public class SearchActivity extends AppCompatActivity {
     private String[] keywordSearchImages() {
 
         if (tagSearchEditText.getText().toString().isEmpty() &&
-            fromDateEditText.getText().toString().isEmpty() &&
-            toDateEditText.getText().toString().isEmpty() &&
-            fromTimeEditText.getText().toString().isEmpty() &&
-            toTimeEditText.getText().toString().isEmpty())
+                fromDateEditText.getText().toString().isEmpty() &&
+                toDateEditText.getText().toString().isEmpty() &&
+                fromTimeEditText.getText().toString().isEmpty() &&
+                toTimeEditText.getText().toString().isEmpty())
         {
             return null;
         }
@@ -145,7 +145,7 @@ public class SearchActivity extends AppCompatActivity {
         Date userToTime = null;
         try {
             if (!fromDateEditText.getText().toString().isEmpty()) {
-                    userFromDate =  new SimpleDateFormat("yyyy/MM/dd", Locale.US).parse(fromDateEditText.getText().toString());
+                userFromDate =  new SimpleDateFormat("yyyy/MM/dd", Locale.US).parse(fromDateEditText.getText().toString());
             }
             if (!toDateEditText.getText().toString().isEmpty()) {
                 userToDate =  new SimpleDateFormat("yyyy/MM/dd", Locale.US).parse(toDateEditText.getText().toString());
